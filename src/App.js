@@ -8,10 +8,13 @@ import 'materialize-css/dist/css/materialize.min.css';
 import './App.css';
 
 const App = () => {
+  
   useEffect(() => {
     // Init Materialize JS
     M.AutoInit();
+    // eslint-disable-next-line
   }, [])
+
   return (
     <Fragment>
       <SearchBar />
