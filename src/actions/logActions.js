@@ -1,5 +1,5 @@
 import { 
-  GET_LOGS, SET_LOADING, LOGS_ERROR, ADD_LOG
+  GET_LOGS, SET_LOADING, LOGS_ERROR, ADD_LOG, DELETE_LOG
 } from "./types"
 
 // Get logs from server
@@ -49,7 +49,28 @@ export const addLog = (log) => async dispatch => {
       })
     }
   }
+// delete log from server
+  export const deleteLog = (id) => async dispatch => {
+    // is another way to do this, it is at the bottom of this file commented out
+      try {
+        setLoading()
+  
+        await fetch(`/logs/${id}`, {
+          method: 'DELETE'
+        })
 
+  
+        dispatch({
+          type: DELETE_LOG,
+          payload: id
+        })
+      } catch (err) {
+        dispatch({
+          type: LOGS_ERROR,
+          payload: err.response.data
+        })
+      }
+    }
 
 
 //sets loading to true
