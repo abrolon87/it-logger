@@ -1,5 +1,5 @@
 import { 
-  GET_LOGS, SET_LOADING, LOGS_ERROR, ADD_LOG, DELETE_LOG
+  GET_LOGS, SET_LOADING, LOGS_ERROR, ADD_LOG, DELETE_LOG, UPDATE_LOG, SEARCH_LOGS, SET_CURRENT, CLEAR_CURRENT
 } from "./types"
 
 // Get logs from server
@@ -51,7 +51,6 @@ export const addLog = (log) => async dispatch => {
   }
 // delete log from server
   export const deleteLog = (id) => async dispatch => {
-    // is another way to do this, it is at the bottom of this file commented out
       try {
         setLoading()
   
@@ -72,6 +71,64 @@ export const addLog = (log) => async dispatch => {
       }
     }
 
+
+  export const updateLog = log => async dispatch => {
+    try {
+        setLoading()
+    
+        const res = await fetch(`/logs/${log.id}`, {
+          method: 'PUT',
+          body: JSON.stringify(log),
+          headers: {
+           'Content-Type': 'application/json'
+            }
+        })
+  
+        const data = await res.json()
+        dispatch({
+          type: UPDATE_LOG,
+          payload: data
+         })
+      } catch (err) {
+        dispatch({
+           type: LOGS_ERROR,
+           payload: err.response.data
+         })
+      }
+}
+
+export const searchLogs = (text) => async dispatch => {
+  // is another way to do this, it is at the bottom of this file commented out
+    try {
+      setLoading()
+
+      const res = await fetch(`/logs?q=${text}`)
+      const data = await res.json()
+
+      dispatch({
+        type: SEARCH_LOGS,
+        payload: data
+      })
+    } catch (err) {
+      dispatch({
+        type: LOGS_ERROR,
+        payload: err.response.data
+      })
+    }
+  }
+// set current log
+export const setCurrent = log => {
+  return {
+    type: SET_CURRENT,
+    payload: log
+  }
+}
+// clears current log
+export const clearCurrent = () => {
+  return {
+    type: CLEAR_CURRENT
+  }
+}
 
 //sets loading to true
 export const setLoading = () => {
