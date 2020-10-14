@@ -6,13 +6,10 @@ import { getTechs } from '../../actions/techActions'
 
 const TechListModal = ({ getTechs, tech: { techs, loading } }) => {
   
-
   useEffect(() => {
     getTechs()
     // eslint-diable-next-line
   }, [])
-
-  
 
   return (
     <div id="tech-list-modal" className="modal">
