@@ -1,11 +1,11 @@
 {
   "logs": [
     {
-      "message": "harddrive failed in workstation 002",
-      "attention": false,
+      "id": 1,
+      "message": "hard drive failed in workstation 002",
+      "attention": true,
       "tech": "Sara Wilson",
-      "date": "2020-10-13T23:01:40.534Z",
-      "id": 1
+      "date": "2020-10-14T00:41:09.753Z"
     },
     {
       "message": "fix typo on line 56",
@@ -13,13 +13,6 @@
       "tech": "John Doe",
       "date": "2020-10-13T23:03:28.895Z",
       "id": 2
-    },
-    {
-      "message": "rhhtyjuykr",
-      "attention": true,
-      "tech": "John Doe",
-      "date": "2020-10-13T23:47:50.970Z",
-      "id": 4
     }
   ],
   "techs": [
